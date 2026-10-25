@@ -8,11 +8,27 @@ Before KMP starts searching the string, it has to build a prefix array, which co
 fill prefix with zeros
 set prefix[0] to 1
 set j to zero
-for every character i in the array starting from the second one:
+for every character i in the pattern string starting from the second one:
     while there is no match and j is positive:
-        set j to prefix[j]
+        set j to prefix[j - 1]
     if i and the character at j match, increment j by one
     set prefix[i] to j
 ```
 
-The most interesting part is in lines 5-6. In that part, we are looking for shorter prefix-suffix matches to fall back to. If we just decrement j, we would be wasting a lot of time checking known-invalid prefix-suffix pairs.
+The most interesting part is in lines 5-6. In that part, we are looking for shorter prefix-suffix matches to fall back to. If we just decrement j, we would be wasting a lot of time checking known-invalid prefix-suffix pairs. Searching the actual string is pretty similar to building the prefix:
+
+```python
+fill prefix with zeros
+set prefix[0] to 1
+set j to zero
+for every character i in the string to be searched starting from the second one:
+    while there is no match and j is positive:
+        set j to prefix[j - 1]
+    if i and the character in the pattern string at j match, increment j by one
+    set prefix[i] to j
+    if j has reached the length of the pattern string:
+        set j to prefix[j - 1]
+        handle completed match
+```
+
+The time complexity of Knuth-Morris-Pratt is `O(length of pattern string + length of string to be searched)`.
