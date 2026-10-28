@@ -35,3 +35,14 @@ graph TD;
     R-->S[a];
     S-->T[t];
 ```
+
+In a trie, if a character of the string doesn't match a node of corresponding depth, its children do not need to be searched, saving time compared to a brute force algorithm.
+
+```
+"c" != "a" // Cat
+"c" != "b" // Cat
+"c" == "c" // Cat
+"a" == "a" // cAt
+"t" == "t" // caT
+```
+
