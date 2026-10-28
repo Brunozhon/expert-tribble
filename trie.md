@@ -12,6 +12,6 @@ A trie is a tree-based data structure used for searching strings. If you want to
 Instead, we can organize them into a *trie*, like this:
 
 ```mermaid
-flowchart TRIE
-  A[root] --> B[A]
+graph TD;
+    A[Root]-->B[A];
 ```
